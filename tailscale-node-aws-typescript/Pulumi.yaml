@@ -1,0 +1,18 @@
+name: ${PROJECT}
+description: ${DESCRIPTION}
+runtime: nodejs
+template:
+  description: A basic ec2 instance with Tailscale installed
+  config:
+    tailscale:apiKey:
+      description: Tailscale API Key
+      secret: true
+    vpcNetworkCidr:
+      description: The network CIDR to use for the VPC
+      default: 10.0.0.0/16
+    hostname: 
+      description: The hostname of the Tailscale node
+    TAILSCALE_SSH:
+      description: Enable Tailscale SSH access to the node
+      default: true
+      

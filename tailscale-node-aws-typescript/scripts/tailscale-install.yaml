@@ -1,0 +1,6 @@
+#cloud-config
+package_update: true
+runcmd:
+  - echo "[cloud-init] Installing Tailscale for demo purposes using the convenience script..."
+  - echo "Refer to https://tailscale.com/kb/1347/installation for guidance."
+  - curl -fsSL https://tailscale.com/install.sh | sh
