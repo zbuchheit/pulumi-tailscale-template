@@ -1,0 +1,34 @@
+name: ${PROJECT}
+description: ${DESCRIPTION}
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+template:
+  description: A basic Subnet Router with a private instance
+  config:
+    tailscale:tailnet:
+      description: The Tailnet ID (example.com)
+    vpcCidrBlock:
+      description: The network CIDR to use for the VPC
+      default: 10.0.0.0/16
+    privateSubnetCidrs:
+      description: The private subnet CIDR to use for the VPC
+      default: 10.0.1.0/24
+    publicSubnetCidrs:
+      description: The public subnet CIDR to use for the VPC
+      default: 10.0.101.0/24
+    privateInstanceIP:
+      description: The private IP of the private instance
+      default: 10.0.1.25
+    overwriteExistingACL:
+      description: Agree to overwrite your existing ACL?
+      default: true
+packages:
+  tailscale_cloudinit_config:
+    source: terraform-module
+    version: 0.1.8
+    parameters:
+      - tailscale/tailscale/cloudinit
+      - 0.0.9
+      - tailscale_cloudinit_config

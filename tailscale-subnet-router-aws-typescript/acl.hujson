@@ -1,0 +1,60 @@
+{
+    "tagOwners": {
+        // OAUTH Tag
+        "tag:parent-tag": [],
+        // USW2 Tags
+        "tag:subnet-router": [
+            "tag:parent-tag"
+        ],
+    },
+    "autoApprovers": {
+        "routes": {
+            "10.0.0.0/16": [
+                "tag:subnet-router"
+            ],
+        },
+    },
+    "grants": [
+        // USW2 Region Routing
+        {
+            "src": [
+                "autogroup:member"
+            ],
+            "dst": [
+                "10.0.0.0/16"
+            ],
+            "ip": [
+                "*"
+            ],
+            "via": [
+                "tag:subnet-router"
+            ],
+        },
+        {
+            "src": [
+                "autogroup:admin"
+            ],
+            "dst": [
+                "tag:subnet-router"
+            ],
+            "ip": [
+                "*"
+            ],
+        },
+    ],
+    "ssh": [
+        {
+            "action": "accept",
+            "src": [
+                "autogroup:admin"
+            ],
+            "dst": [
+                "tag:subnet-router"
+            ],
+            "users": [
+                "autogroup:nonroot",
+                "root"
+            ]
+        }
+    ],
+}
